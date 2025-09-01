@@ -1,0 +1,15 @@
+public class FixDebugOne
+{
+ 
+    public static void main(String[] args)
+    {
+        System.out.println("Hello World!");
+    }
+}
+
+Bugs:
+1. Invalid class name: "FixDebug One" → should be "FixDebugOne" (no spaces allowed).
+2. Wrong method signature: "public static void Main(String args)" → should be "public static void main(String[] args)".
+3. Typo in System class: "Systm" → should be "System".
+4. Missing semicolon: after System.out.println("Hello World!").
+
