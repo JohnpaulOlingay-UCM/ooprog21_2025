@@ -1,0 +1,46 @@
+import javax.swing.JOptionPane;
+
+public class DPWHBudgetAllocationProgram {
+    public static void main(String[] args) {
+        double budget = 0;
+        boolean valid = false;
+
+      
+        while (!valid) {
+            try {
+                String input = JOptionPane.showInputDialog("Enter the total budget:");
+                if (input == null) 
+                }
+                budget = Double.parseDouble(input);
+
+                if (budget <= 0) {
+                    JOptionPane.showMessageDialog(null, "Budget should not be empty!");
+                } else {
+                    
+                    int confirm = JOptionPane.showConfirmDialog (null,"You entered: " + budget +,"Confirm Budget",JOptionPane.YES_NO_OPTION)
+                            
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        valid = true;
+                    }
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input! Please enter a valid number.");
+            }
+        }
+        
+        String output = "DPWH Flood Control Budget Summary"
+                + "-----------------------------------"
+                + "Total Budget: " + (long)budget "
+                + "Drainage Systems (25%): " + (long)drainage"
+                + "River Dikes (20%): " + (long)riverDikes"
+                + "Pumping Stations (15%): " + (long)pumpingStations"
+                + "Road Elevation / Mitigation (25%): " + (long)roadElevation"
+                + "Emergency Response (10%): " + (long)emergencyResponse"
+                + "Miscellaneous: " + (long)miscellaneous"
+                + "-----------------------------------";
+
+        JOptionPane.showMessageDialog(null, output);
+    }
+}
