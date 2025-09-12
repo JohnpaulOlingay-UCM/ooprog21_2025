@@ -1,0 +1,59 @@
+import javax.swing.JOptionPane;
+
+public class DPWHBudgetAllocationProgram {
+    public static void main(String[] args) {
+        double budget = 0;
+        boolean valid = false;
+
+        // Step 1 & 2: Input and validate budget
+        while (!valid) {
+            try {
+                String input = JOptionPane.showInputDialog("Enter the total budget:");
+                if (input == null) { // If user presses Cancel
+                    System.exit(0);
+                }
+                budget = Double.parseDouble(input);
+
+                if (budget <= 0) {
+                    JOptionPane.showMessageDialog(null, "Budget should not be empty!");
+                } else {
+                    // Step 3: Confirm budget
+                    int confirm = JOptionPane.showConfirmDialog(
+                            null,
+                            "You entered: " + budget + "\nIs this correct?",
+                            "Confirm Budget",
+                            JOptionPane.YES_NO_OPTION
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        valid = true;
+                    }
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input! Please enter a valid number.");
+            }
+        }
+
+        // Step 4: Compute allocations
+        double drainage = budget * 0.25;
+        double riverDikes = budget * 0.20;
+        double pumpingStations = budget * 0.15;
+        double roadElevation = budget * 0.25;
+        double emergencyResponse = budget * 0.10;
+        double miscellaneous = budget - (drainage + riverDikes + pumpingStations + roadElevation + emergencyResponse);
+
+        // Step 5: Display breakdown
+        String output = "DPWH Flood Control Budget Summary\n"
+                + "-----------------------------------\n"
+                + "Total Budget: " + (long)budget + "\n\n"
+                + "Drainage Systems (25%): " + (long)drainage + "\n"
+                + "River Dikes (20%): " + (long)riverDikes + "\n"
+                + "Pumping Stations (15%): " + (long)pumpingStations + "\n"
+                + "Road Elevation / Mitigation (25%): " + (long)roadElevation + "\n"
+                + "Emergency Response (10%): " + (long)emergencyResponse + "\n"
+                + "Miscellaneous: " + (long)miscellaneous + "\n"
+                + "-----------------------------------";
+
+        JOptionPane.showMessageDialog(null, output);
+    }
+}
