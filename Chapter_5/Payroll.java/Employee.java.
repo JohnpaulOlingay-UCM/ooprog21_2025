@@ -1,0 +1,57 @@
+public class Employee {
+    private int employeeNumber;
+    private double payRate;
+    private final int MAX_EMPLOYEE_NUMBER = 9999;
+    private final double MAX_RATE = 60.00;
+    private final double OVERTIME_MULTIPLIER = 1.5;
+
+    public Employee(int employeeNumber, double payRate) {
+        if (employeeNumber > MAX_EMPLOYEE_NUMBER)
+            employeeNumber = MAX_EMPLOYEE_NUMBER;
+        if (payRate > MAX_RATE)
+            payRate = MAX_RATE;
+
+        this.employeeNumber = employeeNumber;
+        this.payRate = payRate;
+    }
+
+    public double getRegularPay(double hoursWorked) {
+        double regularHours = Math.min(hoursWorked, 40);
+        return regularHours * payRate;
+    }
+
+    public double getOvertimePay(double hoursWorked) {
+        if (hoursWorked > 40) {
+            double overtimeHours = hoursWorked - 40;
+            return overtimeHours * payRate * OVERTIME_MULTIPLIER;
+        } else {
+            return 0.0;
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class Payroll {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("How many hours did you work this week? ");
+        double hoursWorked = input.nextDouble();
+
+        System.out.print("What is your regular pay rate? ");
+        double payRate = input.nextDouble();
+
+      
+        Employee emp = new Employee(1001, payRate);
+
+        double regularPay = emp.getRegularPay(hoursWorked);
+        double overtimePay = emp.getOvertimePay(hoursWorked);
+
+        System.out.println("Regular pay is " + regularPay);
+        System.out.println("Overtime pay is " + overtimePay);
+
+        input.close();
+    }
+}
+
